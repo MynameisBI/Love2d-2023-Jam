@@ -15,6 +15,7 @@ function love.load()
   print(puzzle1[0])
   -- for i in range(1, puzzle1[0] + 1) do
   --   print(i)
+  -- end
 
   Gamestate.registerEvents()
   Gamestate.switch(Game)
