@@ -30,4 +30,8 @@ function Piece:draw()
   love.graphics.draw(self.image, self.x, self.y)
 end
 
+function Piece:mousepressed(button, x, y)
+  print('super idol de xiaorong')
+end
+
 return Piece

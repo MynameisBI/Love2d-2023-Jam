@@ -24,4 +24,10 @@ function Game:draw()
   end
 end
 
+function Game:mousepressed(button, x, y)
+  for i, piece in ipairs(self.pieces) do
+    self.pieces[i]:mousepressed(button, x, y)
+  end
+end
+
 return Game
