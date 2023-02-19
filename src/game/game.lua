@@ -2,6 +2,7 @@ local Piece = require 'src.game.piece'
 
 local Game = {}
 
+
 function Game:enter()
   self.pieces = {}
 
@@ -9,7 +10,9 @@ function Game:enter()
 end
 
 function Game:start()
-  table.insert(self.pieces, Piece(1, 100, 100))
+  for i = 1, 1 do 
+    table.insert(self.pieces, Piece(i, 100*(i-1), 100))
+  end
 end
 
 function Game:update(dt)

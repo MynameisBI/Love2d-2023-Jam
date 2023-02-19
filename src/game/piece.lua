@@ -1,5 +1,9 @@
 local Piece = Class('Piece')
 
+is_pressed = 0
+mouse_x, mouse_y = 0, 0
+puzzle_piece_size = 0
+
 function Piece:initialize(id, x, y)
   self.x, self.y = x, y
 
@@ -19,10 +23,27 @@ function Piece:initialize(id, x, y)
   elseif id == 7 then
     self.image = Sprites.puzzle1[7]
   end
+
+  function object_drag(x,y,mouse_x,mouse_y)
+    self.x = self.x + (x - mouse_x)
+    self.y = self.y + (y - mouse_y)
+  end
+
+  function within_piece(x,y)
+    result = 0
+  end
 end
 
+
 function Piece:update(dt)
-  
+  local x, y = love.mouse.getPosition()
+  if love.mouse.isDown(1) and (x > self.x) then
+    object_drag(x,y,mouse_x,mouse_y)
+    love.mouse.setCursor(love.mouse.getSystemCursor("hand"))
+  else
+    love.mouse.setCursor()
+  end
+  mouse_x, mouse_y = love.mouse.getPosition()
 end
 
 function Piece:draw()
@@ -30,8 +51,16 @@ function Piece:draw()
   love.graphics.draw(self.image, self.x, self.y)
 end
 
-function Piece:mousepressed(button, x, y)
-  print('super idol de xiaorong')
+function Piece:mousepressed(x,y,button,istouch)
+  if button == 1 then
+    is_pressed = 1
+  end
+end
+
+function Piece:mousereleased(x,y,button,istouch)
+  if button == 1 then
+    is_pressed = 0
+  end
 end
 
 return Piece
