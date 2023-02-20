@@ -8,7 +8,7 @@ Game = require 'src.game.game'
 
 function love.load()
   Gamestate.registerEvents()
-  Gamestate.switch(Game)
+  Gamestate.switch(Menu)
 end
 
 function love.update(dt)
