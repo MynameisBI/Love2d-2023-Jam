@@ -38,7 +38,7 @@ end
 function Piece:within_piece(x,y)
   result = true
   if self.id == 1 then
-    result = (x >= self.x) and (x <= self.x + 95) and (y >= self.y) and (y <= self.y + 465)
+    result = (x >= self.x) and (x <= self.x + 95) and (y >= self.y) and (y <= self.y + 428)
     result = result or ((x >= self.x + 96) and  (y >= self.y + 181) and (x <= self.x + 203) and (y <= self.y + 284))
   elseif self.id == 2 then
     result = (x >= self.x) and (x <= self.x + 255) and (y >= self.y) and (y <= self.y + 202)
@@ -99,16 +99,16 @@ end
 
 function Piece:keypressed(key)
   if (self.left_mouse_hold == 1) then
-    if key == "d" then
+    if key == "d" or key == "right" then
       self.x = self.x + 1
     end
-    if key == "a" then
+    if key == "a" or key == "left" then
       self.x = self.x - 1
     end
-    if key == "w" then
+    if key == "w" or key == "up" then
       self.y = self.y - 1
     end
-    if key == "s" then
+    if key == "s" or key== "down" then
       self.y = self.y + 1
     end
   end

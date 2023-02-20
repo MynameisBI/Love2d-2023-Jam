@@ -6,8 +6,8 @@ function Smui:initialize()
   self.components = {}
 end
 
-function Smui:Button(x, y, w, h, text)
-  local button = SmuiButton(x, y, w, h, text)
+function Smui:Button(x, y, w, h, text, font)
+  local button = SmuiButton(x, y, w, h, text, font)
   table.insert(self.components, button)
 
   return button
