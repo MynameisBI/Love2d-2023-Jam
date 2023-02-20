@@ -22,9 +22,13 @@ function Game:update(dt)
 end
 
 function Game:draw()
-  for i, piece in ipairs(self.pieces) do
+  for i = #self.pieces, 1, -1 do
     self.pieces[i]:draw()
   end
+
+  -- for i, piece in ipairs(self.pieces) do
+  --   self.pieces[i]:draw()
+  -- end
 end
 
 function Game:mousepressed(x,y,button)
