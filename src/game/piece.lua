@@ -1,4 +1,5 @@
 local Piece = Class('Piece')
+piece_hold = false
 
 function Piece:initialize(id, x, y)
   self.x, self.y = x, y
@@ -80,8 +81,9 @@ function Piece:draw()
 end
 
 function Piece:mousepressed(x,y,button)
-  if button == 1 and self:within_piece(x,y) then
+  if button == 1 and self:within_piece(x,y) and (piece_hold == false) then
     self.left_mouse_hold = 1
+    piece_hold = true
   end
   self.former_location.x = self.x
   self.former_location.y = self.y
@@ -90,6 +92,7 @@ end
 function Piece:mousereleased(x,y,button)
   if button == 1 then
     self.left_mouse_hold = 0
+    piece_hold = false
   end
   -- self.x, self.y = former_location[1], former_location[2]
 end
