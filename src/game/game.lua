@@ -22,6 +22,7 @@ function Game:update(dt)
 end
 
 function Game:draw()
+  love.graphics.rectangle("fill", 20, 50, 800, 0)
   for i = #self.pieces, 1, -1 do
     self.pieces[i]:draw()
   end
