@@ -11,3 +11,7 @@ Sprites = {
     lg.newImage('assets/puzzle1/puzzle1-pc7.png'),
   }
 }
+
+Fonts = {
+  menu_medium = lg.newFont('assets/font/Bebas-Regular.ttf', 36),
+}

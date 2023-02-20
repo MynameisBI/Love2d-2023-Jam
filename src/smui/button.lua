@@ -3,6 +3,7 @@ local SmuiButton = Class('SmuiButton')
 function SmuiButton:initialize(x, y, w, h, text, font)
   self.x, self.y = x or 0, y or 0
   self.w, self.h = w or 0, h or 0
+  self.sx, self.sy = 1, 1
 
   self.color = {0.2, 0.2, 0.2}
 
@@ -42,10 +43,11 @@ end
 
 function SmuiButton:draw()
   love.graphics.setColor(self.color)
-  love.graphics.rectangle('fill', self.x, self.y, self.w, self.h)
+  love.graphics.rectangle('fill', self.x, self.y, self.w * self.sx, self.h * self.sy)
 
   love.graphics.setColor(self.textColor)
-  love.graphics.print(self.text, self.x + self.w/2, self.y + self.h/2, 0, 1, 1,
+  love.graphics.setFont(self.font)
+  love.graphics.print(self.text, self.x + self.w/2 * self.sx, self.y + self.h/2 * self.sy, 0, self.sx, self.sy,
       self.font:getWidth(self.text)/2, self.font:getHeight()/2)
 
   love.graphics.setColor(1, 1, 1)
