@@ -1,6 +1,7 @@
-local Piece = require 'src.game.piece'
+local Piece = require 'src.level1.piece'
 
 local Game = {}
+
 
 function Game:enter()
   self.pieces = {}
@@ -21,7 +22,7 @@ function Game:update(dt)
 end
 
 function Game:draw()
-  love.graphics.rectangle("fill", 20, 50, 800, 0)
+  love.graphics.rectangle("fill", 20, 50, 800, 581)
   for i = #self.pieces, 1, -1 do
     self.pieces[i]:draw()
   end

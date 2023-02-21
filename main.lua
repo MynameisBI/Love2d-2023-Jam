@@ -3,7 +3,7 @@ require 'assets'
 
 
 Menu = require 'src.menu.menu'
-Game = require 'src.game.game'
+Level1 = require 'src.level1.level1'
 Level2 = require 'src.level2.level2'
 
 
