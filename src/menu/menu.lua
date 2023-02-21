@@ -13,19 +13,27 @@ function Menu:enter()
   self.currentFrame = 'main'
 
   -- Main frame
-  self.startButton = self.smui:Button(screenWidth/2 - 140, 220, 280, 70, 'PLAY', Fonts.menu_medium)
+  self.startButton = self.smui:Button(screenWidth/2 - 140, 360, 280, 70, 'PLAY', Fonts.menu_medium)
   self.startButton.released = function(startButton, x, y, button)
     self.currentFrame = 'levels'
+
+    if startButton.isHovered then startButton.color = {0.4, 0.4, 0.4}
+    else startButton.color = {0.2, 0.2, 0.2}
+    end
   end
   self.startButton.enter = function(startButton)
     if self.startButton.tweenHandle ~= nil then 
       self.timer:cancel(self.startButton.tweenHandle)  
     end
-    self.startButton.tweenHandle = self.timer:tween(0.4, startButton, {sx = 1.2, sy = 1.2, x = screenWidth/2 - 168, y = 213}, 'out-quint')
+    self.startButton.tweenHandle = self.timer:tween(0.4, startButton, {sx = 1.2, sy = 1.2, x = screenWidth/2 - 168, y = 353}, 'out-quint')
+
+    if not self.isSelected then self.color = {0.4, 0.4, 0.4} end
   end
   self.startButton.exit = function(startButton)
     self.timer:cancel(self.startButton.tweenHandle)
-    self.startButton.tweenHandle = self.timer:tween(0.4, startButton, {sx = 1, sy = 1, x = screenWidth/2 - 140, y = 220}, 'out-quint')
+    self.startButton.tweenHandle = self.timer:tween(0.4, startButton, {sx = 1, sy = 1, x = screenWidth/2 - 140, y = 360}, 'out-quint')
+
+    if not self.isSelected then self.color = {0.2, 0.2, 0.2} end
   end
 
   -- Levels frame
@@ -60,6 +68,11 @@ end
 
 function Menu:draw()
   self.camera:attach()
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.setFont(Fonts.menu_big)
+    love.graphics.print(love.window.getTitle(),
+        screenWidth/2 - Fonts.menu_big:getWidth(love.window.getTitle())/2, 200)
+
     self.smui:draw()    
   self.camera:detach()
 end
