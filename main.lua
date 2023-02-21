@@ -3,13 +3,12 @@ require 'assets'
 
 
 Menu = require 'src.menu.menu'
-Level1 = require 'src.level1.level1'
+Level1 = require 'src.level.level1'
 Level2 = require 'src.level2.level2'
-
 
 function love.load()
   Gamestate.registerEvents()
-  Gamestate.switch(Level2)
+  Gamestate.switch(Level1)
 end
 
 function love.update(dt)
