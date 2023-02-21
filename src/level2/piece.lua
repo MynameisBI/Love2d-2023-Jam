@@ -1,0 +1,44 @@
+local Piece = Class('Piece')
+
+function Piece:initialize(world, x, y, image, points)
+  self.x, self.y = x, y
+  self.image = image
+  self.points = points
+
+  self.world = world
+  self.body = love.physics.newBody(world, x, y, 'static')
+  self.shape = love.physics.newPolygonShape(self.points)
+  self.fixture = love.physics.newFixture(self.body, self.shape)
+
+  self.selected = false
+  self.offsetToMouseX, self.offToMouseY = 0, 0
+end
+
+function Piece:setPosition(x, y)
+  self.x, self.y = x, y
+  self.body:setPosition(x, y)
+end
+
+function Piece:update(dt)
+  if self.selected then
+    local mouseX, mouseY = love.mouse.getPosition()
+    self:setPosition(mouseX - self.offsetToMouseX, mouseY - self.offsetToMouseY)
+  end
+end
+
+function Piece:draw()
+  love.graphics.setColor(1, 1, 1)
+  love.graphics.draw(self.image, self.x, self.y)
+end
+
+function Piece:pressed(x, y, button)
+  self.selected = true
+  self.offsetToMouseX = x - self.x
+  self.offsetToMouseY = y - self.y
+end
+
+function Piece:released(x, y, button)
+  self.selected = false
+end
+
+return Piece

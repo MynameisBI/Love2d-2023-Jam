@@ -2,7 +2,6 @@ local Piece = require 'src.game.piece'
 
 local Game = {}
 
-
 function Game:enter()
   self.pieces = {}
 

@@ -43,7 +43,7 @@ function Menu:enter()
   end
   self.level2 = self.smui:Button(1700, 200, 200, 200)
   self.level2.released = function()
-    Gamestate.switch(Game)
+    Gamestate.switch(Level2)
   end
   self.level3 = self.smui:Button(2000, 200, 200, 200)
   self.level3.released = function()
