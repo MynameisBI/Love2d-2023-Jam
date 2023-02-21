@@ -1,5 +1,7 @@
 local Piece = Class('Piece')
 
+local rounder = 40
+
 function Piece:initialize(world, x, y, image, points)
   self.x, self.y = x, y
   self.image = image
@@ -11,7 +13,7 @@ function Piece:initialize(world, x, y, image, points)
   self.fixture = love.physics.newFixture(self.body, self.shape)
 
   self.selected = false
-  self.offsetToMouseX, self.offToMouseY = 0, 0
+  self.offsetToMouseX, self.offsetToMouseY = 0, 0
 end
 
 function Piece:setPosition(x, y)
@@ -38,7 +40,16 @@ function Piece:pressed(x, y, button)
 end
 
 function Piece:released(x, y, button)
+  if self.selected then
+    self:setPosition(self:roundToNearest(self.x, rounder),
+      self:roundToNearest(self.y, rounder))
+  end
   self.selected = false
+end
+
+function Piece:roundToNearest(number, nearest)
+  local remainder = number % nearest
+  return remainder < nearest / 2 and number - remainder or number - remainder + nearest
 end
 
 return Piece
