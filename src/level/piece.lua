@@ -2,13 +2,14 @@ local Piece = Class('Piece')
 
 local rounder = 40
 
-function Piece:initialize(world, x, y, image, shapes)
+function Piece:initialize(world, x, y, ox, oy, image, shapes)
   self.x, self.y = x, y
+  self.ox, self.oy = ox, oy
   self.image = image
   self.points = points
 
   self.world = world
-  self.body = love.physics.newBody(world, x, y, 'static')
+  self.body = love.physics.newBody(world, x + ox, y + oy, 'static')
   self.shapes = {}
   self.fixtures = {}
   for i = 1, #shapes do
@@ -22,7 +23,7 @@ end
 
 function Piece:setPosition(x, y)
   self.x, self.y = x, y
-  self.body:setPosition(x, y)
+  self.body:setPosition(x + self.ox, y + self.oy)
 end
 
 function Piece:update(dt)
@@ -34,7 +35,7 @@ end
 
 function Piece:draw()
   love.graphics.setColor(1, 1, 1)
-  love.graphics.draw(self.image, self.x, self.y)
+  love.graphics.draw(self.image, self.x + self.ox, self.y + self.oy)
 end
 
 function Piece:pressed(x, y, button)

@@ -18,6 +18,10 @@ Sprites = {
     lg.newImage('assets/puzzle2/puzzle2-pc5.png'),
     lg.newImage('assets/puzzle2/puzzle2-pc6.png'),
     lg.newImage('assets/puzzle2/puzzle2-pc7.png'),
+    lg.newImage('assets/puzzle2/puzzle2-pc8.png'),
+    lg.newImage('assets/puzzle2/puzzle2-pc9.png'),
+    lg.newImage('assets/puzzle2/puzzle2-pc10.png'),
+    lg.newImage('assets/puzzle2/puzzle2-pc11.png')
   },
 }
 
