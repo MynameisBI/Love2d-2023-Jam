@@ -4,6 +4,7 @@ local rounder = 40
 
 function Piece:initialize(world, x, y, ox, oy, image, shapes)
   self.x, self.y = x, y
+  self.sx, self.sy = 1, 1
   self.ox, self.oy = ox, oy
   self.image = image
   self.points = points
@@ -19,6 +20,9 @@ function Piece:initialize(world, x, y, ox, oy, image, shapes)
 
   self.selected = false
   self.offsetToMouseX, self.offsetToMouseY = 0, 0
+
+  self.timer = Timer.new()
+  self.sizeHandle = self.timer:after(0, function() end) -- Placeholder handle
 end
 
 function Piece:setPosition(x, y)
@@ -27,6 +31,8 @@ function Piece:setPosition(x, y)
 end
 
 function Piece:update(dt)
+  self.timer:update(dt)
+
   if self.selected then
     local mouseX, mouseY = love.mouse.getPosition()
     self:setPosition(mouseX - self.offsetToMouseX, mouseY - self.offsetToMouseY)
@@ -34,20 +40,38 @@ function Piece:update(dt)
 end
 
 function Piece:draw()
+  if self.selected then
+    local x = self:roundToNearest(self.x, rounder)
+    local y = self:roundToNearest(self.y, rounder)
+
+    love.graphics.setColor(1, 1, 1, 0.4)
+    love.graphics.draw(self.image, x + self.ox, y + self.oy, 0, 1, 1)
+  end
+
   love.graphics.setColor(1, 1, 1)
-  love.graphics.draw(self.image, self.x + self.ox, self.y + self.oy)
+  love.graphics.draw(self.image,
+      self.x + self.ox - self.image:getWidth()/2 * (self.sx - 1),
+      self.y + self.oy - self.image:getHeight()/2 * (self.sy - 1),
+      0, self.sx, self.sy)
 end
 
 function Piece:pressed(x, y, button)
   self.selected = true
+
   self.offsetToMouseX = x - self.x
   self.offsetToMouseY = y - self.y
+
+  self.timer:cancel(self.sizeHandle)
+  self.sizeHandle = self.timer:tween(0.4, self, {sx = 0.85, sy = 0.85}, 'out-quint')
 end
 
 function Piece:released(x, y, button)
   if self.selected then
     self:setPosition(self:roundToNearest(self.x, rounder),
       self:roundToNearest(self.y, rounder))
+
+    self.timer:cancel(self.sizeHandle)
+    self.sizeHandle = self.timer:tween(0.4, self, {sx = 1, sy = 1}, 'out-quint')
   end
   self.selected = false
 end
