@@ -37,19 +37,19 @@ function Menu:enter()
   end
 
   -- Levels frame
-  self.level1 = self.smui:Button(1400, 200, 200, 200)
+  self.level1 = self.smui:Button(1216, 200, 160, 160)
   self.level1.released = function()
-    Gamestate.switch(Game)
+    Gamestate.switch(Level1)
   end
-  self.level2 = self.smui:Button(1700, 200, 200, 200)
+  self.level2 = self.smui:Button(1456, 200, 160, 160)
   self.level2.released = function()
     Gamestate.switch(Level2)
   end
-  self.level3 = self.smui:Button(2000, 200, 200, 200)
+  self.level3 = self.smui:Button(1696, 200, 160, 160)
   self.level3.released = function()
-    Gamestate.switch(Game)
+    Gamestate.switch(Level1)
   end
-  self.levelBack = self.smui:Button(2200, 600, 140, 60, 'BACK', Fonts.menu_medium)
+  self.levelBack = self.smui:Button(1804, 582, 140, 60, 'BACK', Fonts.menu_medium)
   self.levelBack.released = function(levelBack, x, y, button)
     self.currentFrame = 'main'
   end

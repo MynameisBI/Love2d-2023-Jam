@@ -26,6 +26,6 @@ Sprites = {
 }
 
 Fonts = {
-  menu_medium = lg.newFont('assets/font/Bebas-Regular.ttf', 36),
+  menu_medium = lg.newFont('assets/font/Bebas-Regular.ttf', 42),
   menu_big = lg.newFont('assets/font/Bebas-Regular.ttf', 72),
 }
