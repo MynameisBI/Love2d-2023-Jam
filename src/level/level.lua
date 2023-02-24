@@ -29,14 +29,16 @@ function Level:draw()
   if _DEBUG then
     for i, piece in ipairs(self.pieces) do
       local x, y = piece.body:getPosition()
-      local globalPoints = {}
-      local localPoints = {piece.shape:getPoints()}
-      for j = 1, #localPoints/2, 1 do
-        globalPoints[j*2 - 1] = localPoints[j*2 - 1] + x
-        globalPoints[j*2] = localPoints[j * 2] + y
+      for j, shape in ipairs(piece.shapes) do
+        local globalPoints = {}
+        local localPoints = {shape:getPoints()}
+        for j = 1, #localPoints/2, 1 do
+          globalPoints[j*2 - 1] = localPoints[j*2 - 1] + x
+          globalPoints[j*2] = localPoints[j * 2] + y
+        end
+        love.graphics.setColor(1, 1, 1)
+        love.graphics.polygon('line', globalPoints)
       end
-      love.graphics.setColor(1, 1, 1)
-      love.graphics.polygon('line', globalPoints)
     end
   end
 end
