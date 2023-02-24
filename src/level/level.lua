@@ -13,6 +13,20 @@ function Level:start()
   
 end
 
+function Level:onPieceReleased(piece_)
+  local won = true -- Sacrifice efficiency for readability
+  for i, piece in ipairs(self.pieces) do
+    if piece.x ~= piece.ax or piece.y ~= piece.ay then
+      won = false
+    end
+  end
+
+  if won then
+    print('Yo Mr White we won')
+  end
+end
+
+
 function Level:update(dt)
   for i, piece in ipairs(self.pieces) do
     self.pieces[i]:update(dt)
@@ -49,11 +63,23 @@ function Level:mousepressed(x, y, button)
       local hit = shape:testPoint(piece.body:getX(), piece.body:getY(), 0, x, y) 
       if hit then
         piece:pressed(x, y, button)
+
+        local numberOfPieces = #self.pieces
+        for k = numberOfPieces, 1, -1 do
+          self.pieces[k+1] = self.pieces[k]
+        end
+        self.pieces[1] = self.pieces[i+1]
+        table.remove(self.pieces, i+1)
+
         goto exit
       end
     end
   end
   ::exit::
+
+  -- if self.pieces[i].selected then
+
+  -- end
 end
 
 function Level:mousereleased(x, y, button)
