@@ -42,7 +42,7 @@ function Level:draw()
   love.graphics.setBackgroundColor(114/255, 146/255, 121/255)
 
   love.graphics.setColor(1, 1, 1, 0.4)
-  love.graphics.rectangle('fill', self.puzzleX, self.puzzleY, self.puzzleSX, self.puzzleSY)
+  love.graphics.rectangle('fill', self.puzzleX or 0, self.puzzleY or 0, self.puzzleSX or 800, self.puzzleSY or 600)
 
   love.graphics.setColor(1, 1, 1)
   for i = #self.pieces, 1, -1 do
