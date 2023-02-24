@@ -57,6 +57,7 @@ end
 
 function Piece:pressed(x, y, button)
   self.selected = true
+  love.mouse.setCursor(love.mouse.getSystemCursor("hand"))
 
   self.offsetToMouseX = x - self.x
   self.offsetToMouseY = y - self.y
@@ -74,6 +75,7 @@ function Piece:released(x, y, button)
     self.sizeHandle = self.timer:tween(0.4, self, {sx = 1, sy = 1}, 'out-quint')
   end
   self.selected = false
+  love.mouse.setCursor()
 end
 
 function Piece:roundToNearest(number, nearest)

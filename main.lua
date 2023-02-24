@@ -8,7 +8,7 @@ Level2 = require 'src.level.level2'
 
 function love.load()
   Gamestate.registerEvents()
-  Gamestate.switch(Level2)
+  Gamestate.switch(Level1)
 end
 
 function love.update(dt)
@@ -16,4 +16,5 @@ function love.update(dt)
 end
 
 function love.draw()
+  
 end
