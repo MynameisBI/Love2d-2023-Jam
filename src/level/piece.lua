@@ -74,7 +74,10 @@ function Piece:released(x, y, button)
 
     self.timer:cancel(self.sizeHandle)
     self.sizeHandle = self.timer:tween(0.4, self, {sx = 1, sy = 1}, 'out-quint')
+    
+    Gamestate.current():onPieceReleased(self)
   end
+
   self.selected = false
 end
 

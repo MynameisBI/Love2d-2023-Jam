@@ -2,6 +2,11 @@ local Piece = require 'src.level.piece'
 
 local Level = Class('Level')
 
+function Level:initialize(puzzleX, puzzleY, puzzleSX, puzzleSY)
+  self.puzzleX, self.puzzleY = puzzleX or 0, puzzleY or 0
+  self.puzzleSX, self.puzzleSY = puzzleSX or 800, puzzleSY or 600
+end
+
 function Level:enter()
   self.pieces = {}
   self.world = love.physics.newWorld(0, 0)
@@ -36,6 +41,10 @@ end
 function Level:draw()
   love.graphics.setBackgroundColor(114/255, 146/255, 121/255)
 
+  love.graphics.setColor(1, 1, 1, 0.4)
+  love.graphics.rectangle('fill', self.puzzleX, self.puzzleY, self.puzzleSX, self.puzzleSY)
+
+  love.graphics.setColor(1, 1, 1)
   for i = #self.pieces, 1, -1 do
     self.pieces[i]:draw()
   end
