@@ -9,6 +9,9 @@ function Level1:initialize()
 end
 
 function Level1:enter()
+  self.puzzleX, self.puzzleY = 120, 80
+  self.puzzleSX, self.puzzleSY = 799, 580
+
   self.pieces = {}
   self.world = love.physics.newWorld(0, 0)
 
