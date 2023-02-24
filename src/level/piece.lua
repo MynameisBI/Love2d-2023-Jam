@@ -2,12 +2,14 @@ local Piece = Class('Piece')
 
 local rounder = 40
 
-function Piece:initialize(world, x, y, ox, oy, image, shapes)
+function Piece:initialize(world, x, y, ox, oy, image, shapes, ax, ay)
   self.x, self.y = x, y
   self.sx, self.sy = 1, 1
   self.ox, self.oy = ox, oy
   self.image = image
   self.points = points
+
+  self.ax, self.ay = ax, ay
 
   self.world = world
   self.body = love.physics.newBody(world, x + ox, y + oy, 'static')
