@@ -10,10 +10,7 @@ function Level:enter()
 end
 
 function Level:start()
-  table.insert(self.pieces,
-      Piece(self.world, 100, 100, Sprites.puzzle2[1], {{0, 0, 0, 306, 140, 188}}))
-  table.insert(self.pieces,
-      Piece(self.world, 100, 100, Sprites.puzzle2[2 ], {{0, 0, 206, 0, 250, 96, 140, 188}}))
+  
 end
 
 function Level:update(dt)

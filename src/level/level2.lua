@@ -17,7 +17,7 @@ end
 
 function Level2:start()
   table.insert(self.pieces,
-      Piece(self.world, 120, 100, 0, 0, Sprites.puzzle2[1], {{0, 0, 0, 306, 140, 188}}))
+      Piece(self.world, 120, 200, 0, 0, Sprites.puzzle2[1], {{0, 0, 0, 306, 140, 188}}   ))
   table.insert(self.pieces,
       Piece(self.world, 120, 200, 0, 0, Sprites.puzzle2[2], {{0, 0, 206, 0, 250, 96, 140, 188}}))
   table.insert(self.pieces,
@@ -37,7 +37,7 @@ function Level2:start()
   table.insert(self.pieces,
       Piece(self.world, 120, 200, 13, 1, Sprites.puzzle2[10], {{2, 40, 325, 250, 325, 70, 237, 0}}))
   table.insert(self.pieces,
-      Piece(self.world, 100, 200, 10, 26, Sprites.puzzle2[11], {{1, 2, 108, 236, 256, 313, 408, 314, 408, 267}}))
+      Piece(self.world, 120, 200, 10, 26, Sprites.puzzle2[11], {{1, 2, 108, 236, 256, 313, 408, 314, 408, 267}}))
   
   
 end

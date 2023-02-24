@@ -8,7 +8,7 @@ Level2 = require 'src.level.level2'
 
 function love.load()
   Gamestate.registerEvents()
-  Gamestate.switch(Menu)
+  Gamestate.switch(Level1)
 end
 
 function love.update(dt)
