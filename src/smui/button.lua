@@ -1,11 +1,16 @@
 local SmuiButton = Class('SmuiButton')
 
-function SmuiButton:initialize(x, y, w, h, text, font)
+function SmuiButton:initialize(x, y, w, h, text, font, colors)
   self.x, self.y = x or 0, y or 0
   self.w, self.h = w or 0, h or 0
   self.sx, self.sy = 1, 1
 
-  self.color = {0.2, 0.2, 0.2}
+  self.colors = colors or {
+    normal = {0.2, 0.2, 0.2},
+    hovered = {0.4, 0.4, 0.4},
+    pressed = {0.7, 0.7, 0.7},
+  }
+  self.currentColor = self.colors.normal
 
   self.text = text or ''
   self.font = font or love.graphics.getFont()
@@ -42,7 +47,7 @@ function SmuiButton:update(dt)
 end
 
 function SmuiButton:draw()
-  love.graphics.setColor(self.color)
+  love.graphics.setColor(self.currentColor)
   love.graphics.rectangle('fill', self.x, self.y, self.w * self.sx, self.h * self.sy)
 
   love.graphics.setColor(self.textColor)
@@ -54,26 +59,26 @@ function SmuiButton:draw()
 end
 
 function SmuiButton:pressed(button)
-  self.color = {0.7, 0.7, 0.7}
+  self.currentColor = self.colors.pressed
 end
 
 function SmuiButton:released(button)
   if self.isHovered then
-    self.color = {0.4, 0.4, 0.4}
+    self.currentColor = self.colors.hovered
   else
-    self.color = {0.2, 0.2, 0.2}
+    self.currentColor = self.colors.normal
   end
 end
 
 function SmuiButton:enter()
   if not self.isSelected then
-    self.color = {0.4, 0.4, 0.4}
+    self.currentColor = self.colors.hovered
   end
 end
 
 function SmuiButton:exit()
   if not self.isSelected then
-    self.color = {0.2, 0.2, 0.2}
+    self.currentColor = self.colors.normal
   end
 end
 
