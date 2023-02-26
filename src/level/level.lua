@@ -85,10 +85,6 @@ function Level:mousepressed(x, y, button)
     end
   end
   ::exit::
-
-  -- if self.pieces[i].selected then
-
-  -- end
 end
 
 function Level:mousereleased(x, y, button)

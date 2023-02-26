@@ -1,4 +1,5 @@
 local lg = love.graphics
+local li = love.image
 
 Sprites = {
   puzzle1 = {
@@ -23,6 +24,14 @@ Sprites = {
     lg.newImage('assets/puzzle2/puzzle2-pc10.png'),
     lg.newImage('assets/puzzle2/puzzle2-pc11.png')
   },
+  puzzle3 = {
+    imageDatas = {
+      li.newImageData('assets/puzzle2/puzzle2-pc1.png'),
+    },
+    images = {
+      lg.newImage('assets/puzzle2/puzzle2-pc1.png'),
+    }
+  }
 }
 
 Fonts = {

@@ -7,7 +7,6 @@ function Piece:initialize(world, x, y, ox, oy, image, shapes, ax, ay)
   self.sx, self.sy = 1, 1
   self.ox, self.oy = ox, oy
   self.image = image
-  self.points = points
 
   self.ax, self.ay = ax, ay
 
