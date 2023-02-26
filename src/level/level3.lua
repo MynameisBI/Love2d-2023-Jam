@@ -44,11 +44,10 @@ function Level3:mousepressed(x, y, button)
         self.pieces[1] = self.pieces[i+1]
         table.remove(self.pieces, i+1)
 
-        goto exit
+        break
       end
     end
   end
-  ::exit::
 end
 
 

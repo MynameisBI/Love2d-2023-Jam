@@ -67,6 +67,8 @@ function Level:draw()
 end
 
 function Level:mousepressed(x, y, button)
+  local solved = false
+
   for i, piece in ipairs(self.pieces) do
     for j, shape in ipairs(self.pieces[i].shapes) do
       local hit = shape:testPoint(piece.body:getX(), piece.body:getY(), 0, x, y) 
@@ -80,11 +82,13 @@ function Level:mousepressed(x, y, button)
         self.pieces[1] = self.pieces[i+1]
         table.remove(self.pieces, i+1)
 
-        goto exit
+        solved = true
+        break
       end
     end
+    
+    if solved then break end
   end
-  ::exit::
 end
 
 function Level:mousereleased(x, y, button)
