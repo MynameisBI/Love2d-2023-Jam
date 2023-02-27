@@ -46,18 +46,60 @@ function Menu:enter()
   end
 
   -- Levels frame
-  self.level1 = self.smui:Button(1216, 200, 160, 160)
-  self.level1.released = function()
+  local levelButtonColors = {
+    normal = {104/255, 126/255, 106/255},
+    hovered = {84/255, 101/255, 88/255},
+    pressed = {59/255, 76/255, 62/255}
+  }
+
+  self.level1 = self.smui:Button(1176, 150, 200, 300, 'Level 1', Fonts.menu_small, levelButtonColors)
+  self.level1.released = function(level1Button)
     Gamestate.switch(Level1)
+    if level1Button.isHovered then level1Button.currentColor = level1Button.colors.hovered
+    else level1Button.currentColor = level1Button.colors.normal
+    end
   end
-  self.level2 = self.smui:Button(1456, 200, 160, 160)
-  self.level2.released = function()
+  self.level1.draw = function(button)
+    love.graphics.setColor(button.currentColor)
+    love.graphics.rectangle('fill', button.x, button.y, button.w * button.sx, button.h * button.sy)
+
+    love.graphics.setColor(button.textColor)
+    love.graphics.setFont(button.font)
+    love.graphics.print(button.text, button.x + 20, button.y + 16, 0, button.sx, button.sy)
+
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.draw(Sprites.puzzle1[6], button.x + button.w/2, button.y + 176, 0, 0.487, 0.487,
+        Sprites.puzzle1[6]:getWidth()/2, Sprites.puzzle1[6]:getHeight()/2)
+  end
+
+  self.level2 = self.smui:Button(1436, 150, 200, 300, 'Level 2', Fonts.menu_small, levelButtonColors)
+  self.level2.released = function(level2Button)
     Gamestate.switch(Level2)
+    if level2Button.isHovered then level2Button.currentColor = level2Button.colors.hovered
+    else level2Button.currentColor = level2Button.colors.normal
+    end
   end
-  self.level3 = self.smui:Button(1696, 200, 160, 160)
-  self.level3.released = function()
-    Gamestate.switch(Level1)
+  self.level2.draw = function(button)
+    love.graphics.setColor(button.currentColor)
+    love.graphics.rectangle('fill', button.x, button.y, button.w * button.sx, button.h * button.sy)
+
+    love.graphics.setColor(button.textColor)
+    love.graphics.setFont(button.font)
+    love.graphics.print(button.text, button.x + 20, button.y + 16, 0, button.sx, button.sy)
+
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.draw(Sprites.puzzle2[3], button.x + button.w/2 + 3, button.y + 176, 0, 0.62, 0.62,
+        Sprites.puzzle2[3]:getWidth()/2, Sprites.puzzle2[3]:getHeight()/2)
   end
+
+  self.level3 = self.smui:Button(1736, 150, 200, 300, 'Level 3', Fonts.menu_small, levelButtonColors)
+  self.level3.released = function(level3Button)
+    Gamestate.switch(Level3)
+    if level3Button.isHovered then level3Button.currentColor = level3Button.colors.hovered
+    else level3Button.currentColor = level3Button.colors.normal
+    end
+  end
+
   self.levelBack = self.smui:Button(1804, 582, 140, 60, 'BACK', Fonts.menu_medium)
   self.levelBack.colors = blueColors
   self.levelBack.currentColor = self.levelBack.colors.normal
