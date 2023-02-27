@@ -52,7 +52,7 @@ function Menu:enter()
     pressed = {59/255, 76/255, 62/255}
   }
 
-  self.level1 = self.smui:Button(1176, 150, 200, 300, 'Level 1', Fonts.menu_small, levelButtonColors)
+  self.level1 = self.smui:Button(1276, 180, 200, 300, 'Level 1', Fonts.menu_small, levelButtonColors)
   self.level1.released = function(level1Button)
     Gamestate.switch(Level1)
     if level1Button.isHovered then level1Button.currentColor = level1Button.colors.hovered
@@ -72,7 +72,7 @@ function Menu:enter()
         Sprites.puzzle1[6]:getWidth()/2, Sprites.puzzle1[6]:getHeight()/2)
   end
 
-  self.level2 = self.smui:Button(1436, 150, 200, 300, 'Level 2', Fonts.menu_small, levelButtonColors)
+  self.level2 = self.smui:Button(1596, 180, 200, 300, 'Level 2', Fonts.menu_small, levelButtonColors)
   self.level2.released = function(level2Button)
     Gamestate.switch(Level2)
     if level2Button.isHovered then level2Button.currentColor = level2Button.colors.hovered
@@ -92,15 +92,15 @@ function Menu:enter()
         Sprites.puzzle2[3]:getWidth()/2, Sprites.puzzle2[3]:getHeight()/2)
   end
 
-  self.level3 = self.smui:Button(1736, 150, 200, 300, 'Level 3', Fonts.menu_small, levelButtonColors)
-  self.level3.released = function(level3Button)
-    Gamestate.switch(Level3)
-    if level3Button.isHovered then level3Button.currentColor = level3Button.colors.hovered
-    else level3Button.currentColor = level3Button.colors.normal
-    end
-  end
+  -- self.level3 = self.smui:Button(1736, 150, 200, 300, 'Level 3', Fonts.menu_small, levelButtonColors)
+  -- self.level3.released = function(level3Button)
+  --   Gamestate.switch(Level3)
+  --   if level3Button.isHovered then level3Button.currentColor = level3Button.colors.hovered
+  --   else level3Button.currentColor = level3Button.colors.normal
+  --   end
+  -- end
 
-  self.levelBack = self.smui:Button(1804, 582, 140, 60, 'BACK', Fonts.menu_medium)
+  self.levelBack = self.smui:Button(1804, 612, 140, 60, 'BACK', Fonts.menu_medium)
   self.levelBack.colors = blueColors
   self.levelBack.currentColor = self.levelBack.colors.normal
   self.levelBack.released = function(levelBack, x, y, button)
