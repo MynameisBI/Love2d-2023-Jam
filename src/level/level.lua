@@ -97,8 +97,8 @@ function Level:draw()
   if self.won then
     love.graphics.setColor(1, 1, 1)
     love.graphics.setFont(Fonts.menu_small)
-    love.graphics.print('Congratulations the puzzle is completed!', 1042/2, 25, 0, 1, 1,
-        Fonts.menu_small:getWidth('Congratulation the puzzle is completed!')/2)
+    love.graphics.print('Congratulations, the puzzle is completed!', 1042/2, 25, 0, 1, 1,
+        Fonts.menu_small:getWidth('Congratulation, the puzzle is completed!')/2)
   end
 
   self.smui:draw()
