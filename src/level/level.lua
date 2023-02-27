@@ -1,5 +1,5 @@
 local Piece = require 'src.level.piece'
-
+local Smui = require 'src.smui.smui'
 
 local Level = Class('Level')
 
@@ -16,11 +16,31 @@ function Level:enter()
 
   self.camera = Camera.new()
 
+  self.smui = Smui()
+
   self:start()
 end
 
 function Level:start()
-  
+  self.menuButton = self.smui:Button(912, 30, 86, 34, 'Menu', Fonts.menu_tiny, 
+  {
+    normal = {104/255, 126/255, 106/255},
+    hovered = {84/255, 101/255, 88/255},
+    pressed = {59/255, 76/255, 62/255}
+  })
+  self.menuButton.released = function(menuButton)
+    Gamestate.switch(Menu)
+    if menuButton.isHovered then menuButton.currentColor = menuButton.colors.hovered
+    else menuButton.currentColor = menuButton.colors.normal
+    end
+  end
+
+
+  self:_start()
+end
+
+function Level:_start()
+
 end
 
 function Level:onPieceReleased(piece_)
@@ -39,6 +59,8 @@ function Level:update(dt)
   for i, piece in ipairs(self.pieces) do
     self.pieces[i]:update(dt)
   end
+
+  self.smui:update(dt)
 end
 
 function Level:draw()
@@ -78,9 +100,13 @@ function Level:draw()
     love.graphics.print('Congratulations the puzzle is completed!', 1042/2, 25, 0, 1, 1,
         Fonts.menu_small:getWidth('Congratulation the puzzle is completed!')/2)
   end
+
+  self.smui:draw()
 end
 
 function Level:mousepressed(x, y, button)
+  self.smui:mousepressed(x, y, button)
+
   if self.won then return end
 
   local solved = false
@@ -109,6 +135,8 @@ function Level:mousepressed(x, y, button)
 end
 
 function Level:mousereleased(x, y, button)
+  self.smui:mousereleased(x, y, button)
+
   if self.won then return end
 
   local x, y = self.camera:mousePosition()
@@ -116,6 +144,10 @@ function Level:mousereleased(x, y, button)
   for i, piece in ipairs(self.pieces) do
     self.pieces[i]:released(x, y, button)
   end
+end
+
+function Level:mousemoved(x, y)
+  self.smui:mousemoved(x, y)
 end
 
 return Level

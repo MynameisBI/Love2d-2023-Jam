@@ -1,6 +1,6 @@
 local Level = require 'src.level.level'
-
 local Piece = require 'src.level.piece'
+local Smui = require 'src.smui.smui'
 
 local Level2 = Class('Level2', Level)
 
@@ -21,10 +21,12 @@ function Level2:enter()
   self.camera:zoomTo(1.14)
   self.camera:lookAt(475, 315)
 
+  self.smui = Smui()
+
   self:start()
 end
 
-function Level2:start()
+function Level2:_start()
   table.insert(self.pieces,
       Piece(self.world, 120, 80, 0, 0, Sprites.puzzle2[1], {{0, 0, 0, 306, 140, 188}},
       120, 80))
