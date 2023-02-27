@@ -15,6 +15,11 @@ function Level1:enter()
   self.pieces = {}
   self.world = love.physics.newWorld(0, 0)
 
+  self.won = false
+
+  self.camera = Camera.new()
+  self.camera:lookAt(520, 360)
+
   self:start()
 end
 

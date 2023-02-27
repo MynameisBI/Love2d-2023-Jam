@@ -35,7 +35,7 @@ function Piece:update(dt)
   self.timer:update(dt)
 
   if self.selected then
-    local mouseX, mouseY = love.mouse.getPosition()
+    local mouseX, mouseY = Gamestate.current().camera:mousePosition()
     self:setPosition(mouseX - self.offsetToMouseX, mouseY - self.offsetToMouseY)
   end
 end

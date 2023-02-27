@@ -15,6 +15,12 @@ function Level2:enter()
   self.pieces = {}
   self.world = love.physics.newWorld(0, 0)
 
+  self.won = false
+
+  self.camera = Camera.new()
+  self.camera:zoomTo(1.14)
+  self.camera:lookAt(475, 315)
+
   self:start()
 end
 
@@ -41,7 +47,7 @@ function Level2:start()
       Piece(self.world, 120, 80, -9, -13, Sprites.puzzle2[7], {{139, 0, 0, 154, 438, 154}},
       240, 440))
   table.insert(self.pieces,
-      Piece(self.world, 120, 80, -15, 0, Sprites.puzzle2[8], {{0, 1, 99, 138, 223, 46, 223, 2}},
+      Piece(self.world, 120, 80, -15, 0, Sprites.puzzle2[8], {{0, 1, 99, 138, 233, 46, 233, 2}},
       600, 80))
   table.insert(self.pieces,
       Piece(self.world, 120, 80, 4, 6, Sprites.puzzle2[9], {{1, 93, 45, 155, 134, 224, 134, 0}},
